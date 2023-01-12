@@ -49,11 +49,14 @@ services:
 
 ## Create Dev Env in Docker based on GitHub repo
 
-Run in VS Code
+Enter repo URL to build image
+
+Run image in VS Code
 
 ```CLI
 dotnet run
 ```
+Install C# and Docker extensions
 
 To work with the repo
 
@@ -61,6 +64,18 @@ To work with the repo
 git config user.name "Edgar Knapp" 
 git config user.email "edgar.r.knapp@hotmail.de"
 ```
+
+To install recommended extensions upon container start, add file
+` .vscode/extensions.json`
+
+```JSON
+ {
+    "recommendations": ["ms-dotnettools.csharp", "ms-azuretools.vscode-docker"]
+  }
+  ```
+Commit, sync, and try it out.
+
+## Use a pre-built dev env image
 
 Change config. Substitute block "build" with:
 
