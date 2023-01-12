@@ -1,9 +1,11 @@
 services:
   app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     entrypoint:
     - sleep
     - infinity
-    dockerfile: "Dockerfile.dev"
     init: true
     volumes:
     - type: bind

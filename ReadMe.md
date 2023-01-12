@@ -32,10 +32,12 @@ USER vscode
 ```YAML
 services:
   app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     entrypoint:
     - sleep
     - infinity
-    dockerfile: "Dockerfile.dev"
     init: true
     volumes:
     - type: bind
@@ -60,7 +62,7 @@ git config user.name "Edgar Knapp"
 git config user.email "edgar.r.knapp@hotmail.de"
 ```
 
-Change config. Substitute line "dockerfile" with:
+Change config. Substitute block "build" with:
 
 ```YAML
     image: edgarknapp/net7dockerdevenv:latest
