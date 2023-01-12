@@ -1,4 +1,4 @@
-# Instrauctions
+# Instructions
 
 Important: Create project using all lowercase letters or else bad things will happen
 
