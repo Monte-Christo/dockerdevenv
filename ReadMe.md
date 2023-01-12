@@ -13,7 +13,7 @@ dotnet new gitignore
 code .
 ```
 
-## Add files
+## Create config files
 
 1. Dockerfile.dev
 
@@ -73,3 +73,9 @@ In the local instance of VS Code, create Image from Dockerfile
 Push to DockerHub
 
 Create new Docker dev env based on git repo
+
+Run in VS Code
+
+```CLI
+dotnet run
+```
