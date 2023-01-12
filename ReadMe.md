@@ -36,5 +36,5 @@ Create .docker/config.json
         "image": "edgarknapp/net7dockerdevenvdemo:latest"
     }
 
-Create Image from Dockerfile
+In the local instance of VS Code, create Image from Dockerfile
 Push to DockerHub
