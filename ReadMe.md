@@ -76,7 +76,7 @@ To install recommended extensions upon container start, add file
 
 Commit, sync, and try it out.
 
-## Use a pre-built dev env image
+## Build and run a pre-built dev env image
 
 In the local instance of VS Code:
 
