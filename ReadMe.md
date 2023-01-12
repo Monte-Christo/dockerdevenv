@@ -29,3 +29,12 @@ dotnet run
 To work with the repo
 git config user.name "Edgar Knapp" 
 git config user.email "edgar.r.knapp@hotmail.de"
+
+Create .docker/config.json
+
+    {
+        "image": "edgarknapp/net7dockerdevenvdemo:latest"
+    }
+
+Create Image from Dockerfile
+Push to DockerHub
