@@ -66,16 +66,19 @@ git config user.email "edgar.r.knapp@hotmail.de"
 ```
 
 To install recommended extensions upon container start, add file
-` .vscode/extensions.json`
+`.vscode/extensions.json`
 
 ```JSON
  {
     "recommendations": ["ms-dotnettools.csharp", "ms-azuretools.vscode-docker"]
   }
   ```
+
 Commit, sync, and try it out.
 
 ## Use a pre-built dev env image
+
+In the local instance of VS Code:
 
 Change config. Substitute block "build" with:
 
@@ -85,7 +88,7 @@ Change config. Substitute block "build" with:
 
 Commit and Sync
 
-In the local instance of VS Code, create Image from Dockerfile
+Create Image from Dockerfile (right-click and provide tag)
 
 Push to DockerHub
 
