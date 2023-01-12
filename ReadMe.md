@@ -1,41 +1,63 @@
 # Instructions
 
 Important: Create project using all lowercase letters or else bad things will happen.
+
 Caution: Carefully distinguish your local VS Code instance from your Docker Dev Env instance.
 
+## Create new Project
+
+```
 dotnet new dockerdevenvdemo
 git init
 dotnet new gitignore
 code .
+```
 
-Add file Dockerfile.dev
+## Add files
 
-    # https://hub.docker.com/_/microsoft-dotnet-sdk/
-    FROM mcr.microsoft.com/dotnet/sdk:7.0
+1. Dockerfile
+```
+# https://hub.docker.com/_/microsoft-dotnet-sdk/
+FROM mcr.microsoft.com/dotnet/sdk:7.0
 
-    RUN useradd -s /bin/bash -m vscode
-    RUN groupadd docker && usermod -aG docker vscode
+RUN useradd -s /bin/bash -m vscode
+RUN groupadd docker && usermod -aG docker vscode
 
-    USER vscode
+USER vscode
+```
 
-    ENTRYPOINT ["sleep", "infinity"]
+2. compose-dev.yaml
+```
+services:
+  app:
+    entrypoint:
+    - sleep
+    - infinity
+    image: edgarknapp/net7dockerdevenv:latest
+    init: true
+    volumes:
+    - type: bind
+      source: /var/run/docker.sock
+      target: /var/run/docker.sock
+```
 
-Commit
-Sync
+3. Commit
 
-Create Dev Env in Docker based on GitHub repo
+4. Sync
+
+## Create Dev Env in Docker based on GitHub repo
+
 Run in VS Code
+```
 dotnet run
+```
 
 To work with the repo
+```
 git config user.name "Edgar Knapp" 
 git config user.email "edgar.r.knapp@hotmail.de"
-
-Create .docker/config.json
-
-    {
-        "image": "edgarknapp/net7dockerdevenvdemo:latest"
-    }
+```
 
 In the local instance of VS Code, create Image from Dockerfile
+
 Push to DockerHub
