@@ -1,6 +1,7 @@
 # Instructions
 
-Important: Create project using all lowercase letters or else bad things will happen
+Important: Create project using all lowercase letters or else bad things will happen.
+Caution: Carefully distinguish your local VS Code instance from your Docker Dev Env instance.
 
 dotnet new dockerdevenvdemo
 git init
