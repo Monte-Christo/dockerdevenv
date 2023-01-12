@@ -16,8 +16,8 @@ code .
 ## Add files
 
 1. Dockerfile.dev
-2. 
-```
+
+```Docker
 # https://hub.docker.com/_/microsoft-dotnet-sdk/
 FROM mcr.microsoft.com/dotnet/sdk:7.0
 
