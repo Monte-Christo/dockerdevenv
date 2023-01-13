@@ -56,6 +56,7 @@ Run image in VS Code
 ```CLI
 dotnet run
 ```
+
 Install C# and Docker extensions
 
 To work with the repo
@@ -69,9 +70,9 @@ To install recommended extensions upon container start, add file
 `.vscode/extensions.json`
 
 ```JSON
- {
+{
     "recommendations": ["ms-dotnettools.csharp", "ms-azuretools.vscode-docker"]
-  }
+}
   ```
 
 Commit, sync, and try it out.
@@ -97,11 +98,23 @@ Create new Docker dev env based on git repo
 Run in VS Code
 
 ```CLI
-dotnet run
+dotnet ru
 ```
+
+## Collaborate
+
+Have someone else run your Docker dev env.
 
 ## Run multiple containers
 
-Switch to branch "oracle"
+Switch to branch `oracle`.
+
+Look at `compose-dev.yaml`.
 
 Create new dev env using https://github.com/Monte-Christo/dockerdevenv.git@oracle
+
+Explore DB, open http://localhost:5341
+
+## Other Things to Try
+
+- Use other IDEs
