@@ -1,6 +1,8 @@
 services:
   app:
-    image: edgarknapp/net7dockerdevenv:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     entrypoint:
     - sleep
     - infinity
@@ -9,3 +11,18 @@ services:
     - type: bind
       source: /var/run/docker.sock
       target: /var/run/docker.sock
+
+  database:
+    image: oracledocker.azurecr.io/${IMAGE_NAME}
+    environment:
+      - ORACLE_SID=${SID}
+      - ORACLE_PDB=${PDB}
+      - ORACLE_PWD=test123$$
+      - ORACLE_CHARACTERSET=WE8MSWIN1252
+    volumes:
+      - ${ORACLE_HOST_DIR}oradata:/opt/oracle/oradata  # persistent oracle database data
+      - ${ORACLE_HOST_DIR}data-bridge:/data-bridge     # share data with the running container
+      - ${ORACLE_HOST_DIR}scripts:/opt/oracle/scripts  # run setup and startup scripts
+    ports:
+      - 1521:1521
+      - 5500:5500
