@@ -6,7 +6,7 @@ Caution: Carefully distinguish your local VS Code instance from your Docker Dev 
 
 ## Create new Project
 
-```
+```CLI
 dotnet new dockerdevenvdemo
 git init
 dotnet new gitignore
@@ -45,18 +45,21 @@ services:
       target: /var/run/docker.sock
 ```
 
-3. Commit and Sync
+1. Commit and Push to repo `dockerdevenvdemo`
 
 ## Create Dev Env in Docker based on GitHub repo
 
-Enter repo URL to build image
+Create a new dev env based on repo.
 
-Run image in VS Code
+Enter repo URL <https://github.com/Monte-Christo/dockerdevenvdemo.git> to build image and run dev env container.
+
+Connect to image with VS Code.
 
 ```CLI
 dotnet run
 ```
-Install C# and Docker extensions
+
+Install C# and Docker extensions manually.
 
 To work with the repo
 
@@ -65,37 +68,63 @@ git config user.name "Edgar Knapp"
 git config user.email "edgar.r.knapp@hotmail.de"
 ```
 
-To install recommended extensions upon container start, add file
+To get prompted install recommended extensions upon container start, add file
 `.vscode/extensions.json`
 
 ```JSON
- {
+{
     "recommendations": ["ms-dotnettools.csharp", "ms-azuretools.vscode-docker"]
-  }
+}
   ```
 
-Commit, sync, and try it out.
+Commit, sync, and quit VS Code.
+
+Remove the dev env, create a new one.
+
+Connect to it with VS Code and be prompted to install extensions.
 
 ## Build and run a pre-built dev env image
 
-In the local instance of VS Code:
+In the *local* instance of VS Code:
 
-Change config. Substitute block "build" with:
+Change dev env config. Substitute block "build" with:
 
 ```YAML
-    image: edgarknapp/net7dockerdevenv:latest
+    image: edgarknapp/dockerdevenvdemo:latest
 ```
 
 Commit and Sync
 
-Create Image from Dockerfile (right-click and provide tag)
+Create Image from Dockerfile (right-click and provide tag `edgarknapp/dockerdevenvdemo:latest`.
 
-Push to DockerHub
+Push to DockerHub.
 
-Create new Docker dev env based on git repo
+Create new Docker dev env based on git repo.
 
 Run in VS Code
 
 ```CLI
 dotnet run
 ```
+
+## Share dev env with others
+
+Have someone else check out your repo and run your Docker dev env.
+
+Make changes, commit, and push on one machine.
+
+kPull and check changes just made on the other.
+
+## Run multiple containers
+
+Switch to branch `oracle`.
+
+Look at `compose-dev.yaml`.
+
+Create new dev env using <https://github.com/Monte-Christo/dockerdevenvdemo.git@oracle>
+
+Explore DB, open <http://localhost:5341>
+
+## Other Things to Try
+
+- Use other IDEs
