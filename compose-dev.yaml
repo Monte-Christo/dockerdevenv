@@ -13,10 +13,10 @@ services:
       target: /var/run/docker.sock
 
   database:
-    image: oracledocker.azurecr.io/${IMAGE_NAME}
+    image: oracledocker.azurecr.io/oracle-19-e
     environment:
-      - ORACLE_SID=${SID}
-      - ORACLE_PDB=${PDB}
+      - ORACLE_SID=ORCL19CDB
+      - ORACLE_PDB=ORCL19PDB1
       - ORACLE_PWD=test123$$
       - ORACLE_CHARACTERSET=WE8MSWIN1252
     volumes:
