@@ -45,7 +45,7 @@ services:
       target: /var/run/docker.sock
 ```
 
-1. Commit and Push to repo `dockerdevenvdemo`
+3. Commit and Push to repo `dockerdevenvdemo`
 
 ## Create Dev Env in Docker based on GitHub repo
 
