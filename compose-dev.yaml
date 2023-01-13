@@ -20,9 +20,9 @@ services:
       - ORACLE_PWD=test123$$
       - ORACLE_CHARACTERSET=WE8MSWIN1252
     volumes:
-      - ${ORACLE_HOST_DIR}oradata:/opt/oracle/oradata  # persistent oracle database data
-      - ${ORACLE_HOST_DIR}data-bridge:/data-bridge     # share data with the running container
-      - ${ORACLE_HOST_DIR}scripts:/opt/oracle/scripts  # run setup and startup scripts
+      - ~/oracle/oradata:/opt/oracle/oradata  # persistent oracle database data
+      - ~/oracle/data-bridge:/data-bridge     # share data with the running container
+      - ~/oracle/scripts:/opt/oracle/scripts  # run setup and startup scripts
     ports:
       - 1521:1521
       - 5500:5500
