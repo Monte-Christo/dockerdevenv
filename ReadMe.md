@@ -99,3 +99,9 @@ Run in VS Code
 ```CLI
 dotnet run
 ```
+
+## Run multiple containers
+
+Switch to branch "oracle"
+
+Create new dev env using https://github.com/Monte-Christo/dockerdevenv.git@oracle
