@@ -106,9 +106,9 @@ Run the app, if adding "swagger" gets old, add this to `launch.json`:
 
 In the *local* instance of VS Code:
 
-Create a branch "pre-built".
+Create a branch "pre-built" and publish.
 
-Change dev env config. Substitute block "build" with:
+Change dev env config in `compose-dev.yaml`. Substitute block "build" with:
 
 ```YAML
     image: edgarknapp/dockerdevenvdemo:latest
@@ -116,17 +116,14 @@ Change dev env config. Substitute block "build" with:
 
 Commit and Sync
 
-Create Image from Dockerfile (right-click and provide tag `edgarknapp/dockerdevenvdemo:latest`.
+Create Image from Dockerfile (right-click `Dockerfile.dev`,, select `Build Image...`, and provide tag `edgarknapp/dockerdevenvdemo:latest`.
 
-Push to DockerHub.
+In Docker Dashboard, push image to DockerHub.
 
-Create new Docker dev env based on git repo.
+Create new Docker dev env based on git repo <https://github.com/Monte-Christo/dockerdevenvdemo.git@pre-built>.
 
 Run in VS Code
 
-```CLI
-dotnet run
-```
 
 ## Share dev env with others
 
@@ -138,9 +135,9 @@ kPull and check changes just made on the other.
 
 ## Run multiple containers
 
-Switch to branch `oracle`.
+Create branch `oracle`.
 
-Look at `compose-dev.yaml`.
+Modify `compose-dev.yaml`.
 
 Create new dev env using <https://github.com/Monte-Christo/dockerdevenvdemo.git@oracle>
 
