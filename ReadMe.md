@@ -117,9 +117,47 @@ kPull and check changes just made on the other.
 
 ## Run multiple containers
 
-Switch to branch `oracle`.
+Checkout `master`, create branch `oracle`. Publish branch.
 
-Look at `compose-dev.yaml`.
+Modify `compose-dev.yaml`. Append:
+
+```YAML
+  database:
+    image: oracledocker.azurecr.io/oracle-19-e
+    environment:
+      - ORACLE_SID=ORCL19CDB
+      - ORACLE_PDB=ORCL19PDB1
+      - ORACLE_PWD=test123$$
+      - ORACLE_CHARACTERSET=WE8MSWIN1252
+    volumes:
+      - ~/oracle/oradata:/opt/oracle/oradata  # persistent oracle database data
+      - ~/oracle/data-bridge:/data-bridge     # share data with the running container
+      - ~/oracle/scripts:/opt/oracle/scripts  # run setup and startup scripts
+    ports:
+      - 1521:1521
+      - 5500:5500
+
+  seq:
+    image: datalust/seq
+    environment:
+      - ACCEPT_EULA=Y
+    volumes:
+      - seq-storage:/data
+    ports:
+      - 5341:80
+
+volumes:
+  seq-storage:
+```
+
+Commit and push.
+
+Login to Azure and ACR.
+
+```CLI
+az login
+az acr login --name oracledocker
+```
 
 Create new dev env using <https://github.com/Monte-Christo/dockerdevenvdemo.git@oracle>
 
@@ -128,3 +166,4 @@ Explore DB, open <http://localhost:5341>
 ## Other Things to Try
 
 - Use other IDEs
+- Set up existing Azure DevOps repos
