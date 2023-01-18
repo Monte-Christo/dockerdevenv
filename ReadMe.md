@@ -2,11 +2,15 @@
 
 Important: Create project using all lowercase letters or else bad things will happen.
 
-Caution: Carefully distinguish your local VS Code instance from your Docker Dev Env instance.
+Caution: Carefully distinguish your local VS Code instance from your Docker
+Dev Env instance. Also, port forwarding in the dev container may block the
+port in the local VS Code instance.
 
 ## Create new Project
 
 ```CLI
+mkdir dockerdevenvdemo
+cd dockerdevenvdemo
 dotnet new webapi
 git init
 dotnet new gitignore
@@ -59,11 +63,7 @@ Enter repo URL <https://github.com/Monte-Christo/dockerdevenvdemo.git> to build 
 
 Connect to image with VS Code.
 
-```CLI
-dotnet run
-```
-
-Install C# and Docker extensions manually.
+Add ReadMe.md, commit, and push
 
 To work with the repo
 
@@ -71,6 +71,14 @@ To work with the repo
 git config user.name "Edgar Knapp" 
 git config user.email "edgar.r.knapp@hotmail.de"
 ```
+
+Run the code
+
+```CLI
+dotnet run
+```
+
+Install C# and Docker extensions into the container manually. This gets old.
 
 To get prompted install recommended extensions upon container start, add file
 `.vscode/extensions.json`
@@ -87,9 +95,18 @@ Remove the dev env, create a new one.
 
 Connect to it with VS Code and be prompted to install extensions.
 
+Run the app, if adding "swagger" gets old, add this to `launch.json`:
+
+```JSON
+    "pattern": "\\bNow listening on:\\s+http://\\S+:([0-9]+)",
+    "uriFormat": "http://localhost:%s/swagger"
+```
+
 ## Build and run a pre-built dev env image
 
 In the *local* instance of VS Code:
+
+Create a branch "pre-built".
 
 Change dev env config. Substitute block "build" with:
 
