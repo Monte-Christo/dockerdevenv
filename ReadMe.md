@@ -11,9 +11,11 @@ dotnet new webapi
 git init
 dotnet new gitignore
 code .
+```
 
 Commit changes, publish to GitHub.
-```
+
+Add an endpoint, make async, run, test, commit, and sync.
 
 ## Create config files
 
