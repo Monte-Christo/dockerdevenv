@@ -7,10 +7,12 @@ Caution: Carefully distinguish your local VS Code instance from your Docker Dev 
 ## Create new Project
 
 ```CLI
-dotnet new dockerdevenvdemo
+dotnet new webapi
 git init
 dotnet new gitignore
 code .
+
+Commit changes, publish to GitHub.
 ```
 
 ## Create config files
