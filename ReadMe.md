@@ -161,9 +161,10 @@ az acr login --name oracledocker
 
 Create new dev env using <https://github.com/Monte-Christo/dockerdevenvdemo.git@oracle>
 
-Explore DB, open <http://localhost:5341>
+Run app, explore DB in Bash CLI or SQL Developer, open <http://localhost:5341> for Seq,
+inspect containers to check port assignments if connection fails.
 
 ## Other Things to Try
 
 - Use other IDEs
-- Set up existing Azure DevOps repos
+- Set up existing Azure DevOps repos as Docker dev envs.
