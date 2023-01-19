@@ -15,6 +15,16 @@ dotnet new gitignore
 code .
 ```
 
+Add some code:
+
+```C#
+static string Hi() => "Welcome to my Minimal API implementation!";
+
+app.MapGet("/hello", Hi).WithName(nameof(Hi));
+
+await app.RunAsync();
+```
+
 ## Create config files
 
 1. Dockerfile.dev
