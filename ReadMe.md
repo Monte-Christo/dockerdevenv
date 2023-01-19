@@ -27,7 +27,7 @@ await app.RunAsync();
 
 Run the code.
 
-Commit and publish.
+Commit and publish to public repo `dockerdevenvdemo`
 
 ## Create config files
 
@@ -61,7 +61,7 @@ services:
       target: /var/run/docker.sock
 ```
 
-3. Commit and Push to repo `dockerdevenvdemo`
+3. Commit and Push.
 
 ## Create Dev Env in Docker based on GitHub repo
 
