@@ -4,6 +4,7 @@
         "dockerdevenv",
         "dockerdevenvdemo",
         "dotnettools",
+        "nameof",
         "usermod",
         "webapi"
     ]

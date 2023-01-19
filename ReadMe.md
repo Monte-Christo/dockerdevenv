@@ -25,6 +25,10 @@ app.MapGet("/hello", Hi).WithName(nameof(Hi));
 await app.RunAsync();
 ```
 
+Run the code.
+
+Commit and publish.
+
 ## Create config files
 
 1. Dockerfile.dev
