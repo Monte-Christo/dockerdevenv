@@ -7,11 +7,27 @@ Caution: Carefully distinguish your local VS Code instance from your Docker Dev 
 ## Create new Project
 
 ```CLI
-dotnet new dockerdevenvdemo
+mkdir dockerdevenvdemo
+cd dockerdevenvdemo
+dotnet new webapi
 git init
 dotnet new gitignore
 code .
 ```
+
+Add some code:
+
+```C#
+static string Hi() => "Welcome to my Minimal API implementation!";
+
+app.MapGet("/hello", Hi).WithName(nameof(Hi));
+
+await app.RunAsync();
+```
+
+Run the code.
+
+Commit and publish to public repo `dockerdevenvdemo`
 
 ## Create config files
 
@@ -45,7 +61,7 @@ services:
       target: /var/run/docker.sock
 ```
 
-3. Commit and Push to repo `dockerdevenvdemo`
+3. Commit and Push.
 
 ## Create Dev Env in Docker based on GitHub repo
 
@@ -68,7 +84,7 @@ git config user.name "Edgar Knapp"
 git config user.email "edgar.r.knapp@hotmail.de"
 ```
 
-To get prompted install recommended extensions upon container start, add file
+To get prompted to install recommended extensions upon container start, add file
 `.vscode/extensions.json`
 
 ```JSON
@@ -87,7 +103,7 @@ Connect to it with VS Code and be prompted to install extensions.
 
 In the *local* instance of VS Code:
 
-Change dev env config. Substitute block "build" with:
+Create a new branch `pre-built`. Change dev env config. Substitute block "build" with:
 
 ```YAML
     image: edgarknapp/dockerdevenvdemo:latest
@@ -95,9 +111,9 @@ Change dev env config. Substitute block "build" with:
 
 Commit and Sync
 
-Create Image from Dockerfile (right-click and provide tag `edgarknapp/dockerdevenvdemo:latest`.
+Right-click on Dockerfile and select `Create Image...`  (provide tag `edgarknapp/dockerdevenvdemo:latest`.
 
-Push to DockerHub.
+Use Docker Dashboard to push image to DockerHub.
 
 Create new Docker dev env based on git repo.
 
