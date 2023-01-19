@@ -2,24 +2,16 @@
 
 Important: Create project using all lowercase letters or else bad things will happen.
 
-Caution: Carefully distinguish your local VS Code instance from your Docker
-Dev Env instance. Also, port forwarding in the dev container may block the
-port in the local VS Code instance.
+Caution: Carefully distinguish your local VS Code instance from your Docker Dev Env instance.
 
 ## Create new Project
 
 ```CLI
-mkdir dockerdevenvdemo
-cd dockerdevenvdemo
-dotnet new webapi
+dotnet new dockerdevenvdemo
 git init
 dotnet new gitignore
 code .
 ```
-
-Commit changes, publish to GitHub.
-
-Add an endpoint, make async, run, test, commit, and sync.
 
 ## Create config files
 
@@ -63,7 +55,11 @@ Enter repo URL <https://github.com/Monte-Christo/dockerdevenvdemo.git> to build 
 
 Connect to image with VS Code.
 
-Add ReadMe.md, commit, and push
+```CLI
+dotnet run
+```
+
+Install C# and Docker extensions manually.
 
 To work with the repo
 
@@ -71,14 +67,6 @@ To work with the repo
 git config user.name "Edgar Knapp" 
 git config user.email "edgar.r.knapp@hotmail.de"
 ```
-
-Run the code
-
-```CLI
-dotnet run
-```
-
-Install C# and Docker extensions into the container manually. This gets old.
 
 To get prompted install recommended extensions upon container start, add file
 `.vscode/extensions.json`
@@ -95,20 +83,11 @@ Remove the dev env, create a new one.
 
 Connect to it with VS Code and be prompted to install extensions.
 
-Run the app, if adding "swagger" gets old, add this to `launch.json`:
-
-```JSON
-    "pattern": "\\bNow listening on:\\s+http://\\S+:([0-9]+)",
-    "uriFormat": "http://localhost:%s/swagger"
-```
-
 ## Build and run a pre-built dev env image
 
 In the *local* instance of VS Code:
 
-Create a branch "pre-built" and publish.
-
-Change dev env config in `compose-dev.yaml`. Substitute block "build" with:
+Change dev env config. Substitute block "build" with:
 
 ```YAML
     image: edgarknapp/dockerdevenvdemo:latest
@@ -116,14 +95,17 @@ Change dev env config in `compose-dev.yaml`. Substitute block "build" with:
 
 Commit and Sync
 
-Create Image from Dockerfile (right-click `Dockerfile.dev`,, select `Build Image...`, and provide tag `edgarknapp/dockerdevenvdemo:latest`.
+Create Image from Dockerfile (right-click and provide tag `edgarknapp/dockerdevenvdemo:latest`.
 
-In Docker Dashboard, push image to DockerHub.
+Push to DockerHub.
 
-Create new Docker dev env based on git repo <https://github.com/Monte-Christo/dockerdevenvdemo.git@pre-built>.
+Create new Docker dev env based on git repo.
 
 Run in VS Code
 
+```CLI
+dotnet run
+```
 
 ## Share dev env with others
 
@@ -135,14 +117,54 @@ kPull and check changes just made on the other.
 
 ## Run multiple containers
 
-Create branch `oracle`.
+Checkout `master`, create branch `oracle`. Publish branch.
 
-Modify `compose-dev.yaml`.
+Modify `compose-dev.yaml`. Append:
+
+```YAML
+  database:
+    image: oracledocker.azurecr.io/oracle-19-e
+    environment:
+      - ORACLE_SID=ORCL19CDB
+      - ORACLE_PDB=ORCL19PDB1
+      - ORACLE_PWD=test123$$
+      - ORACLE_CHARACTERSET=WE8MSWIN1252
+    volumes:
+      - ~/oracle/oradata:/opt/oracle/oradata  # persistent oracle database data
+      - ~/oracle/data-bridge:/data-bridge     # share data with the running container
+      - ~/oracle/scripts:/opt/oracle/scripts  # run setup and startup scripts
+    ports:
+      - 1521:1521
+      - 5500:5500
+
+  seq:
+    image: datalust/seq
+    environment:
+      - ACCEPT_EULA=Y
+    volumes:
+      - seq-storage:/data
+    ports:
+      - 5341:80
+
+volumes:
+  seq-storage:
+```
+
+Commit and push.
+
+Login to Azure and ACR.
+
+```CLI
+az login
+az acr login --name oracledocker
+```
 
 Create new dev env using <https://github.com/Monte-Christo/dockerdevenvdemo.git@oracle>
 
-Explore DB, open <http://localhost:5341>
+Run app, explore DB in Bash CLI or SQL Developer, open <http://localhost:5341> for Seq,
+inspect containers to check port assignments if connection fails.
 
 ## Other Things to Try
 
 - Use other IDEs
+- Set up existing Azure DevOps repos as Docker dev envs.
